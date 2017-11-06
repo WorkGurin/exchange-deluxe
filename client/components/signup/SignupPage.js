@@ -10,7 +10,7 @@ class SignupPage extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
-                    <SignupForm userSignupRequest={userSignupRequest}/>
+                    <SignupForm userSignupRequest={userSignupRequest} history={this.props.history}/>
                 </div>
             </div>
         );
@@ -18,7 +18,8 @@ class SignupPage extends React.Component {
 }
 
 SignupPage.propTypes = {
-    userSignupRequest: PropTypes.func.isRequired
+    userSignupRequest: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export default connect(null, {userSignupRequest})(SignupPage);
