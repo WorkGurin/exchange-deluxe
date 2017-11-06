@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classnames from 'classnames';
@@ -45,6 +46,10 @@ class SignupForm extends React.Component {
             this.setState({errors: {}, isLoading: true});
             this.props.userSignupRequest(this.state)
                 .then(() => {
+                    this.props.addFlashMessage({
+                        type: 'success',
+                        text: 'You signed up successfully. Welcome'
+                    });
                     this.props.history.push('/');
                 })
                 .catch((error) => {
@@ -118,5 +123,11 @@ class SignupForm extends React.Component {
         );
     }
 }
+
+SignupForm.propTypes = {
+    userSignupRequest: PropTypes.func.isRequired,
+    addFlashMessage: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+};
 
 export default SignupForm;
